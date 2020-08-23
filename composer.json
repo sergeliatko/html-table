@@ -1,0 +1,35 @@
+{
+  "name": "sergeliatko/html-table",
+  "type": "library",
+  "description": "Helps building HTML tables for your WordPress projects.",
+  "keywords": [
+    "wordpress",
+    "html",
+    "html tables"
+  ],
+  "homepage": "https://github.com/sergeliatko/html-table",
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "Serge Liatko",
+      "email": "contact@sergeliatko.com",
+      "homepage": "https://sergeliatko.com/?utm_source=packagist&utm_medium=developer-link&utm_campaign=html-table",
+      "role": "Developer"
+    }
+  ],
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/sergeliatko"
+    }
+  ],
+  "require": {
+    "php": ">=7.3.0",
+    "sergeliatko/html": ">=0.0.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "SergeLiatko\\HTMLTable\\": "src"
+    }
+  }
+}

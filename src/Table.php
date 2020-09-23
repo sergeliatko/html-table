@@ -351,7 +351,7 @@ class Table implements Interfaces\Table {
 	 *
 	 * @return Table
 	 */
-	public function setItems( $items ) {
+	public function setItems( array $items ) {
 		$this->items = $items;
 
 		return $this;
@@ -363,11 +363,11 @@ class Table implements Interfaces\Table {
 	public function getTableHeader(): string {
 		if ( is_callable( $show_header = $this->getShowHeader() ) ) {
 			return Thead::HTML(
-				$this->getTableAttrs(),
+				array(),
 				(string) call_user_func_array( $show_header, array( $this, 0 ) )
 			);
 		} elseif ( is_string( $show_header ) ) {
-			return Thead::HTML( $this->getTableAttrs(), $show_header );
+			return Thead::HTML( array(), $show_header );
 		}
 
 		return '';

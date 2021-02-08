@@ -13,19 +13,16 @@ interface Table {
 	/**
 	 * Table constructor.
 	 *
-	 * @param mixed[]              $args {
+	 * @param mixed[]         $args {
 	 *
 	 * Associative array of arguments:
 	 *
-	 * @type array[]|object[]      $items
-	 * @type string[]              $columns
-	 * @type callable[]            $callbacks
-	 * @type false|string|callable $show_header
-	 * @type false|string|callable $show_footer
-	 * @type string[]              $table_attrs
-	 * @type string[]              $row_attrs
-	 * @type string[]              $cell_attrs
-	 * @type string[]              $header_cols
+	 * @type array[]|object[] $items
+	 * @type string[]         $columns
+	 * @type callable[]       $callbacks
+	 * @type string[]         $table_attrs
+	 * @type string[]         $row_attrs
+	 * @type string[]         $cell_attrs
 	 * }
 	 */
 	public function __construct( array $args );

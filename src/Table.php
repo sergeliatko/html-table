@@ -95,18 +95,6 @@ class Table implements Interfaces\Table {
 	}
 
 	/**
-	 * @param array|mixed|object $item
-	 * @param string             $key
-	 *
-	 * @return string
-	 */
-	public static function returnItemKeyValue( $item, string $key ): string {
-		$item = (array) $item;
-
-		return isset( $item[ $key ] ) ? strval( $item[ $key ] ) : '';
-	}
-
-	/**
 	 * @param \SergeLiatko\HTMLTable\Table $table
 	 * @param int                          $index
 	 *
@@ -136,29 +124,6 @@ class Table implements Interfaces\Table {
 		$table->setCallbacks( $callbacks );
 
 		return $output;
-	}
-
-	/**
-	 * @param array  $args
-	 * @param string $column
-	 * @param int    $index
-	 *
-	 * @return array
-	 */
-	public static function formatAttributes( array $args, string $column, int $index = 0 ): array {
-		$patterns     = array(
-			'{column}',
-			'{index}',
-		);
-		$replacements = array(
-			$column,
-			$index,
-		);
-		array_walk( $args, function ( &$value ) use ( $patterns, $replacements ) {
-			$value = str_replace( $patterns, $replacements, $value );
-		} );
-
-		return $args;
 	}
 
 	/**
@@ -299,17 +264,6 @@ class Table implements Interfaces\Table {
 		return is_callable( $callback = $this->getColumnCallback( $column ) ) ?
 			(string) call_user_func_array( $callback, array( $item, $column, $index ) )
 			: '';
-	}
-
-	/**
-	 * @param string $column
-	 *
-	 * @return callable|null
-	 */
-	public function getColumnCallback( string $column ): ?callable {
-		$callbacks = (array) $this->getCallbacks();
-
-		return isset( $callbacks[ $column ] ) ? $callbacks[ $column ] : null;
 	}
 
 	/**

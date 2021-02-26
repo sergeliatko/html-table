@@ -261,9 +261,12 @@ class Table implements Interfaces\Table {
 	 * @return string
 	 */
 	public function getCellContent( $item, string $column, int $index = 0 ): string {
-		return is_callable( $callback = $this->getColumnCallback( $column ) ) ?
-			(string) call_user_func_array( $callback, array( $item, $column, $index ) )
-			: '';
+		if ( is_callable( $callback = $this->getColumnCallback( $column ) ) ) {
+			return (string) call_user_func_array( $callback, array( $item, $column, $index ) );
+		}
+		$data = (array) $item;
+
+		return ( isset( $data[ $column ] ) && is_scalar( $data[ $column ] ) ) ? strval( $data[ $column ] ) : '';
 	}
 
 	/**

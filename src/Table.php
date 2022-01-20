@@ -22,7 +22,7 @@ class Table implements Interfaces\Table {
 	use Traits\Table, ParseArgsRecursive;
 
 	/**
-	 * @var array[]|mixed[]|object[] $items Items to present in the table.
+	 * @var array[]|object[] $items Items to present in the table.
 	 */
 	protected $items;
 
@@ -71,15 +71,15 @@ class Table implements Interfaces\Table {
 	 */
 	public function __construct( array $args ) {
 		/**
-		 * @var array[]|mixed[]|object[] $items
-		 * @var string[]                 $columns
-		 * @var callable[]               $callbacks
-		 * @var false|string|callable    $show_header
-		 * @var false|string|callable    $show_footer
-		 * @var string[]                 $table_attrs
-		 * @var string[]                 $row_attrs
-		 * @var string[]                 $cell_attrs
-		 * @var string[]                 $header_cols
+		 * @var array[]|object[]      $items
+		 * @var string[]              $columns
+		 * @var callable[]            $callbacks
+		 * @var false|string|callable $show_header
+		 * @var false|string|callable $show_footer
+		 * @var string[]              $table_attrs
+		 * @var string[]              $row_attrs
+		 * @var string[]              $cell_attrs
+		 * @var string[]              $header_cols
 		 */
 		extract( self::parseArgsRecursive( $args, $this->getDefaultArgs() ), EXTR_OVERWRITE );
 
@@ -209,7 +209,7 @@ class Table implements Interfaces\Table {
 	 */
 	public function getRow( $item, int $index = 0 ): string {
 		$cells = '';
-		foreach ( array_keys( array_filter( (array) $this->getColumns() ) ) as $column ) {
+		foreach ( array_keys( array_filter( $this->getColumns() ) ) as $column ) {
 			$cells .= $this->getCell( $item, $column, $index );
 		}
 
@@ -275,7 +275,7 @@ class Table implements Interfaces\Table {
 	 * @return bool
 	 */
 	public function isHeaderCol( string $column ): bool {
-		return in_array( $column, (array) $this->getHeaderCols() );
+		return in_array( $column, $this->getHeaderCols() );
 	}
 
 	/**
@@ -297,18 +297,18 @@ class Table implements Interfaces\Table {
 	}
 
 	/**
-	 * @return array[]|mixed[]|object[]
+	 * @return array[]|object[]
 	 */
-	public function getItems() {
+	public function getItems(): array {
 		return $this->items;
 	}
 
 	/**
-	 * @param array[]|mixed[]|object[] $items
+	 * @param array[]|object[] $items
 	 *
 	 * @return Table
 	 */
-	public function setItems( array $items ) {
+	public function setItems( array $items ): Table {
 		$this->items = $items;
 
 		return $this;
@@ -342,7 +342,7 @@ class Table implements Interfaces\Table {
 	 *
 	 * @return Table
 	 */
-	public function setShowHeader( $show_header ) {
+	public function setShowHeader( $show_header ): Table {
 		$this->show_header = $show_header;
 
 		return $this;
@@ -394,15 +394,15 @@ class Table implements Interfaces\Table {
 	 *
 	 * @return Table
 	 */
-	public function setShowFooter( $show_footer ) {
+	public function setShowFooter( $show_footer ): Table {
 		$this->show_footer = $show_footer;
 
 		return $this;
 	}
 
 	/**
-	 * @param array[]|mixed[]|object[] $items
-	 * @param int                      $index
+	 * @param array[]|object[] $items
+	 * @param int              $index
 	 *
 	 * @return string
 	 */
@@ -422,7 +422,7 @@ class Table implements Interfaces\Table {
 	public function getTableBody(): string {
 		return Tbody::HTML(
 			array(),
-			$this->getTableRows( $this->getItems(), 1 )
+			$this->getTableRows( $this->getItems() )
 		);
 	}
 

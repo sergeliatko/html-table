@@ -17,7 +17,6 @@ trait Table {
 	 */
 	public static function HTML( array $args ): string {
 		/** @var \SergeLiatko\HTMLTable\Interfaces\Table $instance */
-		/** @noinspection PhpMethodParametersCountMismatchInspection */
 		$instance = new self( $args );
 
 		return $instance->toHTML();
